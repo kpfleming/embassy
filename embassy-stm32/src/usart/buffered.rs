@@ -457,6 +457,10 @@ impl<'d> BufferedUart<'d> {
 
         info.rcc.enable_and_reset();
 
+        trace!("tx_buffer len {=usize}", tx_buffer.len());
+        trace!("rx_buffer len {=usize}", rx_buffer.len());
+        trace!("tx_buffer empty {=bool}", tx_buffer.is_empty());
+        trace!("rx_buffer empty {=bool}", rx_buffer.is_empty());
         // assert!(!tx_buffer.is_empty());
         let len = tx_buffer.len();
         unsafe { state.tx_buf.init(tx_buffer.as_mut_ptr(), len) };
