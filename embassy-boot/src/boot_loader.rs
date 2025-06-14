@@ -425,6 +425,9 @@ fn assert_partitions<ACTIVE: NorFlash, DFU: NorFlash, STATE: NorFlash>(
     state: &STATE,
     page_size: u32,
 ) {
+    defmt::trace!("active capacity: {=usize}", active.capacity());
+    defmt::trace!("dfu capacity: {=usize}", dfu.capacity());
+    defmt::trace!("state capacity: {=usize}", state.capacity());
     assert_eq!(active.capacity() as u32 % page_size, 0);
     assert_eq!(dfu.capacity() as u32 % page_size, 0);
     // DFU partition has to be bigger than ACTIVE partition to handle swap algorithm
